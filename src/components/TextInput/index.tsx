@@ -12,32 +12,39 @@ export default function Input({
   multiline,
   onChangeText,
   keyboardType,
+  error,
 }: InputProps) {
   const [focused, setFocused] = useState<boolean>(false);
 
   return (
-    <View
-      style={[
-        styles.container,
-        containerStyle,
-        {borderBottomColor: focused ? utils.colors.PRIMARY : utils.colors.GREY},
-      ]}>
+    <View style={[styles.container, containerStyle]}>
       <Text style={styles.label}>{label}</Text>
-      <TextInput
-        value={value}
-        placeholder={placeholder}
-        style={[styles.input, {height: multiline ? 80 : 48,}]}
-        placeholderTextColor={styles.placeholder.color}
-        multiline={multiline}
-        onChangeText={onChangeText}
-        onFocus={() => {
-          setFocused(true);
-        }}
-        onEndEditing={() => {
-          setFocused(false);
-        }}
-        keyboardType={keyboardType}
-      />
+      <View
+        style={[
+          {
+            borderBottomColor: focused
+              ? utils.colors.PRIMARY
+              : utils.colors.GREY,
+          },
+          styles.innerContainer,
+        ]}>
+        <TextInput
+          value={value}
+          placeholder={placeholder}
+          style={[styles.input, {height: multiline ? 80 : 48}]}
+          placeholderTextColor={styles.placeholder.color}
+          multiline={multiline}
+          onChangeText={onChangeText}
+          onFocus={() => {
+            setFocused(true);
+          }}
+          onEndEditing={() => {
+            setFocused(false);
+          }}
+          keyboardType={keyboardType}
+        />
+      </View>
+      {error !== '' && <Text style={styles.error}>{error}</Text>}
     </View>
   );
 }

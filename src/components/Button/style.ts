@@ -6,7 +6,9 @@ const styles = StyleSheet.create({
     height: 48,
     width: utils.width * 0.4,
     padding: 10,
-    backgroundColor: utils.colors.PRIMARY,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 5,
   },
   text: {
     fontFamily: utils.fonts.GOTHAM,

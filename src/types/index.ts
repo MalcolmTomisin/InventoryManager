@@ -13,9 +13,11 @@ export interface FABProps {
 export interface InputProps extends TextInputProps {
   containerStyle?: object;
   label?: string;
+  error?: string;
 }
 
-export interface ButtonProps {
+export interface TouchableProps {
   label?: string;
   containerStyle?: object;
+  disabled?: boolean;
 }

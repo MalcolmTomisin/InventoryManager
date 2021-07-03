@@ -1,11 +1,18 @@
 import React from 'react';
 import {TouchableOpacity, Text} from 'react-native';
 import styles from './style';
-import {ButtonProps} from '../../types';
+import {TouchableProps as ButtonProps} from '../../types';
+import utils from '../../utils';
 
-export default function Button({label, containerStyle}: ButtonProps) {
+export default function Button({label, containerStyle, disabled}: ButtonProps) {
   return (
-    <TouchableOpacity style={[styles.button, containerStyle]}>
+    <TouchableOpacity
+      disabled={disabled}
+      style={[
+        styles.button,
+        containerStyle,
+        {backgroundColor: disabled ? utils.colors.GREY : utils.colors.PRIMARY},
+      ]}>
       <Text style={styles.text}>{label}</Text>
     </TouchableOpacity>
   );

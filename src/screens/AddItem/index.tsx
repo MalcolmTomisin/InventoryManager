@@ -1,11 +1,11 @@
 import React from 'react';
 import {ScrollView} from 'react-native';
-import {TextInput} from '../../components';
+import {TextInput, Button} from '../../components';
 import styles from './style';
 
 export default function AddItem() {
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView style={styles.container}>
       <TextInput
         label="Name"
         placeholder="Tomisin Alu"
@@ -29,6 +29,7 @@ export default function AddItem() {
         multiline
         containerStyle={styles.input}
       />
+      <Button label="Add" containerStyle={styles.input} />
     </ScrollView>
   );
 }
