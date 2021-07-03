@@ -11,12 +11,17 @@ export default {
   },
   routes: {
     HOME: 'Inventory Screen',
+    ADD: 'Add Item',
   },
   fonts: {
     GOTHAM: 'GothamMedium',
     AILERON: 'Aileron-Regular',
+    AILERON_BOLD: 'Aileron-Bold',
   },
   colors: {
     WHITE: '#FFFFFF',
-  }
+    INPUT: '#272755',
+    PRIMARY: '#1DA1F2',
+    GREY: '#9393AA',
+  },
 };

@@ -1,7 +1,14 @@
 import React from 'react';
-import {InventoryList} from '../../components';
+import {InventoryList, FloatingButton} from '../../components';
 import {data} from './data';
+import {View} from 'react-native';
+import styles from './style';
 
 export default function Inventory() {
-  return <InventoryList data={data} />;
+  return (
+    <View style={styles.container}>
+      <InventoryList data={data} />
+      <FloatingButton onPress={() => {}} />
+    </View>
+  );
 }

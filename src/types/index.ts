@@ -1,3 +1,4 @@
+import {TextInputProps} from 'react-native';
 export interface Item {
   name: string;
   price: number;
@@ -5,10 +6,11 @@ export interface Item {
   description: string;
 }
 
-export interface SvgProps {
-  fill: string;
-  width?: number;
-  height?: number;
-  price: number;
-  style?: object;
+export interface FABProps {
+  onPress: () => void;
+}
+
+export interface InputProps extends TextInputProps {
+  containerStyle?: object;
+  label?: string;
 }
