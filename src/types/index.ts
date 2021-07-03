@@ -14,3 +14,8 @@ export interface InputProps extends TextInputProps {
   containerStyle?: object;
   label?: string;
 }
+
+export interface ButtonProps {
+  label?: string;
+  containerStyle?: object;
+}

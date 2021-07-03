@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   input: {
-    height: 48,
     borderWidth: 0,
     fontSize: 14,
     fontFamily: utils.fonts.AILERON,

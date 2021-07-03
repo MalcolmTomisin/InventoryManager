@@ -26,7 +26,7 @@ export default function Input({
       <TextInput
         value={value}
         placeholder={placeholder}
-        style={[styles.input]}
+        style={[styles.input, {height: multiline ? 80 : 48,}]}
         placeholderTextColor={styles.placeholder.color}
         multiline={multiline}
         onChangeText={onChangeText}

@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
   text: {
     fontFamily: utils.fonts.GOTHAM,
     fontSize: 11,
-      color: utils.colors.WHITE,
+    color: utils.colors.WHITE,
     marginLeft: 5,
   },
 });

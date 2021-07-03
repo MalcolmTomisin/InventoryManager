@@ -10,8 +10,25 @@ export default function AddItem() {
         label="Name"
         placeholder="Tomisin Alu"
         containerStyle={styles.input}
-          />
-        
+      />
+      <TextInput
+        label="Price"
+        placeholder="₦ 500"
+        containerStyle={styles.input}
+        keyboardType="numeric"
+      />
+      <TextInput
+        label="Total stock (Qty)"
+        placeholder="65"
+        containerStyle={styles.input}
+        keyboardType="numeric"
+      />
+      <TextInput
+        label="Description"
+        placeholder="..."
+        multiline
+        containerStyle={styles.input}
+      />
     </ScrollView>
   );
 }
