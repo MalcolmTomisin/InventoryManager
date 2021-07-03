@@ -12,4 +12,11 @@ export default {
   routes: {
     HOME: 'Inventory Screen',
   },
+  fonts: {
+    GOTHAM: 'GothamMedium',
+    AILERON: 'Aileron-Regular',
+  },
+  colors: {
+    WHITE: '#FFFFFF',
+  }
 };

@@ -18,5 +18,12 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     right: 0,
+    height: 50,
+    width: 50,
+  },
+  imageContainer: {
+    borderTopStartRadius: 22,
+    borderTopEndRadius: 22,
+    overflow: 'hidden',
   },
 });
