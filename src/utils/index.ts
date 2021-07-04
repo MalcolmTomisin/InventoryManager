@@ -1,4 +1,7 @@
-import {Dimensions, Platform} from 'react-native';
+import { Dimensions, Platform } from 'react-native';
+import {GlobalState} from '../types';
+
+const IS_EMPTY = 0;
 
 export default {
   width: Dimensions.get('window').width,
@@ -23,5 +26,12 @@ export default {
     INPUT: '#272755',
     PRIMARY: '#1DA1F2',
     GREY: '#9393AA',
+  },
+  storage_key: '@appState',
+  checkEmptyState: (state: GlobalState) => {
+    if (state.inventory.length === IS_EMPTY) {
+      return true;
+    }
+    return false;
   },
 };

@@ -1,9 +1,15 @@
 import {GlobalState, Action} from '../../types';
-import {ADD_ITEM, EDIT_ITEM, DELETE_ITEM, ADD_NAME} from '../types';
+import {
+  ADD_ITEM,
+  EDIT_ITEM,
+  DELETE_ITEM,
+  ADD_NAME,
+  HYDRATE_STATE,
+} from '../types';
 
-const INITIAL_STATE: GlobalState = {
+const INITIAL_STATE = {
   inventory: [],
-  setOfNames: new Set(),
+  setOfNames: new Set<string>(),
 };
 
 const appReducer = (state: GlobalState = INITIAL_STATE, action: Action) => {
@@ -16,6 +22,10 @@ const appReducer = (state: GlobalState = INITIAL_STATE, action: Action) => {
       return {...state, ...action.payload};
     case ADD_NAME:
       return {...state, ...action.payload};
+    case HYDRATE_STATE:
+      return {...action.payload};
+    default:
+      return {...state};
   }
 };
 

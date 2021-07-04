@@ -5,6 +5,7 @@ import styles from './style';
 import {GlobalState} from '../../types';
 import {useSelector, useDispatch} from 'react-redux';
 import appActions from '../../provider/actions';
+import utils from '../../utils';
 
 const ACTIONS = {
   handleName: 1,
@@ -13,7 +14,7 @@ const ACTIONS = {
   handleDescription: 4,
 };
 
-export default function AddItem() {
+export default function AddItem({navigation: {navigate}}) {
   const {setOfNames, inventory} = useSelector((state: GlobalState) => state);
   const dispatch = useDispatch();
   const [form, handleForm] = useState({
@@ -30,19 +31,21 @@ export default function AddItem() {
   });
   const [disabled, setDisabled] = useState<boolean>(true);
   const addItemToInventory = () => {
+    setOfNames?.add(form.name.trim().toLowerCase());
     inventory.unshift({
       ...form,
       price: parseInt(form.price),
-      totalStock: parseInt(form.description),
+      totalStock: parseInt(form.totalStock),
     });
-    dispatch(appActions.addItem(inventory));
+    dispatch(appActions.addItem({inventory, setOfNames}));
+    navigate(utils.routes.HOME);
   };
 
   const checkAllInputs = () => {
-    if (form.name.length < 3) {
+    if (form.name.trim().length < 3) {
       return handleError({...error, name: 'Invalid name'});
     }
-    if (setOfNames?.has(form.name.toLowerCase())) {
+    if (setOfNames?.has(form.name.trim().toLowerCase())) {
       return handleError({...error, name: 'Name already taken'});
     }
     if (!form.price.match(/^\d+$/)) {
@@ -51,7 +54,7 @@ export default function AddItem() {
     if (!form.totalStock.match(/^\d+$/)) {
       return handleError({...error, totalStock: 'Invalid stock'});
     }
-    if (form.description.split(' ').length < 3) {
+    if (form.description.trim().split(' ').length < 3) {
       return handleError({...error, description: 'Add more description'});
     }
     return setDisabled(false);
@@ -80,7 +83,9 @@ export default function AddItem() {
         placeholder="Tomisin Alu"
         containerStyle={styles.input}
         value={form.name}
-        onChangeText={text => handleTextInput(text, ACTIONS.handleName)}
+        onChangeText={text => {
+          handleTextInput(text, ACTIONS.handleName);
+        }}
         error={error.name}
         onEndEditing={() => checkAllInputs()}
       />
@@ -90,7 +95,9 @@ export default function AddItem() {
         containerStyle={styles.input}
         keyboardType="numeric"
         value={form.price}
-        onChangeText={text => handleTextInput(text, ACTIONS.handlePrice)}
+        onChangeText={text => {
+          handleTextInput(text, ACTIONS.handlePrice);
+        }}
         error={error.price}
         onEndEditing={() => checkAllInputs()}
       />
@@ -100,7 +107,9 @@ export default function AddItem() {
         containerStyle={styles.input}
         keyboardType="numeric"
         value={form.totalStock}
-        onChangeText={text => handleTextInput(text, ACTIONS.handleStock)}
+        onChangeText={text => {
+          handleTextInput(text, ACTIONS.handleStock);
+        }}
         error={error.totalStock}
         onEndEditing={() => checkAllInputs()}
       />
@@ -110,7 +119,9 @@ export default function AddItem() {
         multiline
         containerStyle={styles.input}
         value={form.description}
-        onChangeText={text => handleTextInput(text, ACTIONS.handleDescription)}
+        onChangeText={text => {
+          handleTextInput(text, ACTIONS.handleDescription);
+        }}
         error={error.description}
         onEndEditing={() => checkAllInputs()}
       />

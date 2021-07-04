@@ -1,31 +1,32 @@
 import Carousel from 'react-native-snap-carousel';
 import {styles} from './style';
-import {Item} from '../../types';
+import {GlobalState} from '../../types';
 import React from 'react';
-import {View, Image} from 'react-native';
+import {View, Image, TouchableOpacity, Touchable} from 'react-native';
 import Price from '../PriceContainer';
 import Name from '../NameContainer';
 import Stock from '../StockContainer';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import utils from '../../utils';
-interface CarouselProps {
-  data: Array<Item>;
-}
+import {useSelector} from 'react-redux';
 
-export default function CarouselList({data}: CarouselProps) {
+export default function CarouselList() {
+  const {inventory} = useSelector((state: GlobalState) => state);
   const _renderItem = ({item, index}) => (
-    <View style={styles.items}>
-      <View style={styles.imageContainer}>
-        <Image
-          source={{uri: `https://picsum.photos/id/${index}/200/300`}}
-          resizeMode="cover"
-          style={styles.image}
-        />
-        <Price price={item.price} containerStyle={styles.price} />
-        <Name name={item.name} />
-        <Stock stock={item.totalStock} />
+    <TouchableOpacity key={index}>
+      <View style={styles.items}>
+        <View style={styles.imageContainer}>
+          <Image
+            source={{uri: `https://picsum.photos/id/${index}/200/300`}}
+            resizeMode="cover"
+            style={styles.image}
+          />
+          <Price price={item.price} containerStyle={styles.price} />
+          <Name name={item.name} />
+          <Stock stock={item.totalStock} />
+        </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 
   const emptyComponent = () => (
@@ -36,7 +37,7 @@ export default function CarouselList({data}: CarouselProps) {
 
   return (
     <Carousel
-      data={[]}
+      data={inventory}
       renderItem={_renderItem}
       itemWidth={styles.items.width}
       itemHeight={styles.items.height}

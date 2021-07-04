@@ -1,4 +1,10 @@
-import {ADD_ITEM, EDIT_ITEM, DELETE_ITEM, ADD_NAME} from '../types';
+import {
+  ADD_ITEM,
+  EDIT_ITEM,
+  DELETE_ITEM,
+  ADD_NAME,
+  HYDRATE_STATE,
+} from '../types';
 
 const addItem = (payload: object) => ({
   type: ADD_ITEM,
@@ -20,9 +26,15 @@ const addName = (payload: object) => ({
   payload,
 });
 
+const hydrateState = (payload: object) => ({
+  type: HYDRATE_STATE,
+  payload,
+});
+
 export default {
   addItem,
   editItem,
   removeItem,
   addName,
+  hydrateState,
 };
