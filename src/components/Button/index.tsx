@@ -4,9 +4,15 @@ import styles from './style';
 import {TouchableProps as ButtonProps} from '../../types';
 import utils from '../../utils';
 
-export default function Button({label, containerStyle, disabled}: ButtonProps) {
+export default function Button({
+  label,
+  containerStyle,
+  disabled,
+  onPress,
+}: ButtonProps) {
   return (
     <TouchableOpacity
+      onPress={onPress}
       disabled={disabled}
       style={[
         styles.button,

@@ -1,8 +1,8 @@
 import {TextInputProps} from 'react-native';
 export interface Item {
   name: string;
-  price: number;
-  totalStock: number;
+  price: number | null;
+  totalStock: number | null;
   description: string;
 }
 
@@ -20,4 +20,15 @@ export interface TouchableProps {
   label?: string;
   containerStyle?: object;
   disabled?: boolean;
+  onPress?: () => void;
+}
+
+export interface GlobalState {
+  inventory: Array<Item>;
+  setOfNames?: Set<string>;
+}
+
+export interface Action {
+  type: string;
+  payload: object;
 }

@@ -26,4 +26,10 @@ export const styles = StyleSheet.create({
     borderTopEndRadius: 22,
     overflow: 'hidden',
   },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: utils.width * 0.3,
+  },
 });

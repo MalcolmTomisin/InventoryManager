@@ -13,6 +13,7 @@ export default function Input({
   onChangeText,
   keyboardType,
   error,
+  onEndEditing,
 }: InputProps) {
   const [focused, setFocused] = useState<boolean>(false);
 
@@ -38,8 +39,9 @@ export default function Input({
           onFocus={() => {
             setFocused(true);
           }}
-          onEndEditing={() => {
+          onEndEditing={event => {
             setFocused(false);
+            onEndEditing ? onEndEditing(event) : null;
           }}
           keyboardType={keyboardType}
         />

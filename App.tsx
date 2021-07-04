@@ -8,16 +8,19 @@
  * @format
  */
 
-import React from 'react';
-
+import React, {useEffect} from 'react';
+import {Provider} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
 import {AppNavigator} from './src/navigation';
+import store from './src/provider';
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <AppNavigator />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <AppNavigator />
+      </NavigationContainer>
+    </Provider>
   );
 };
 
