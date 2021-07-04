@@ -32,4 +32,18 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginLeft: utils.width * 0.3,
   },
+  descriptionContainer: {
+    backgroundColor: '#000000',
+    paddingVertical: 25,
+    borderBottomStartRadius: 5,
+    borderBottomEndRadius: 5,
+    paddingStart: 10,
+  },
+  description: {
+    fontFamily: utils.fonts.AILERON,
+    fontSize: 14,
+    fontWeight: '500',
+    lineHeight: 17,
+    color: '#fff',
+  }
 });

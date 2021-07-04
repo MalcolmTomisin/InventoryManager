@@ -16,6 +16,12 @@ const ACTIONS = {
 
 export default function AddItem({navigation: {navigate}}) {
   const {setOfNames, inventory} = useSelector((state: GlobalState) => state);
+  const nullError = {
+    name: '',
+    price: '',
+    totalStock: '',
+    description: '',
+  };
   const dispatch = useDispatch();
   const [form, handleForm] = useState({
     name: '',
@@ -23,12 +29,7 @@ export default function AddItem({navigation: {navigate}}) {
     totalStock: '',
     description: '',
   });
-  const [error, handleError] = useState({
-    name: '',
-    price: '',
-    totalStock: '',
-    description: '',
-  });
+  const [error, handleError] = useState(nullError);
   const [disabled, setDisabled] = useState<boolean>(true);
   const addItemToInventory = () => {
     setOfNames?.add(form.name.trim().toLowerCase());
@@ -43,51 +44,55 @@ export default function AddItem({navigation: {navigate}}) {
 
   const checkAllInputs = () => {
     if (form.name.trim().length < 3) {
-      return handleError({...error, name: 'Invalid name'});
+      handleError({...nullError, name: 'Invalid name'});
+      return true;
     }
     if (setOfNames?.has(form.name.trim().toLowerCase())) {
-      return handleError({...error, name: 'Name already taken'});
+      handleError({...nullError, name: 'Name already taken'});
+      return true;
     }
     if (!form.price.match(/^\d+$/)) {
-      return handleError({...error, price: 'invalid price'});
+      handleError({...nullError, price: 'invalid price'});
+      return true;
     }
     if (!form.totalStock.match(/^\d+$/)) {
-      return handleError({...error, totalStock: 'Invalid stock'});
+      handleError({...nullError, totalStock: 'Invalid stock'});
+      return true;
     }
     if (form.description.trim().split(' ').length < 3) {
-      return handleError({...error, description: 'Add more description'});
+      handleError({...nullError, description: 'Add more description'});
+      return true;
     }
-    return setDisabled(false);
+    handleError({...nullError});
+    return false;
   };
 
   const handleTextInput = (text: string, flag: number) => {
     switch (flag) {
       case ACTIONS.handleName:
-        handleError({...error, name: ''});
         return handleForm({...form, name: text});
       case ACTIONS.handlePrice:
-        handleError({...error, price: ''});
         return handleForm({...form, price: text});
       case ACTIONS.handleStock:
-        handleError({...error, totalStock: ''});
         return handleForm({...form, totalStock: text});
       case ACTIONS.handleDescription:
-        handleError({...error, description: ''});
         return handleForm({...form, description: text});
     }
   };
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <TextInput
         label="Name"
         placeholder="Tomisin Alu"
         containerStyle={styles.input}
         value={form.name}
         onChangeText={text => {
+          handleError(nullError);
           handleTextInput(text, ACTIONS.handleName);
+          setDisabled(checkAllInputs());
         }}
         error={error.name}
-        onEndEditing={() => checkAllInputs()}
+        onEndEditing={checkAllInputs}
       />
       <TextInput
         label="Price"
@@ -97,9 +102,10 @@ export default function AddItem({navigation: {navigate}}) {
         value={form.price}
         onChangeText={text => {
           handleTextInput(text, ACTIONS.handlePrice);
+          setDisabled(checkAllInputs());
         }}
         error={error.price}
-        onEndEditing={() => checkAllInputs()}
+        onEndEditing={checkAllInputs}
       />
       <TextInput
         label="Total stock (Qty)"
@@ -109,9 +115,10 @@ export default function AddItem({navigation: {navigate}}) {
         value={form.totalStock}
         onChangeText={text => {
           handleTextInput(text, ACTIONS.handleStock);
+          setDisabled(checkAllInputs());
         }}
         error={error.totalStock}
-        onEndEditing={() => checkAllInputs()}
+        onEndEditing={checkAllInputs}
       />
       <TextInput
         label="Description"
@@ -121,9 +128,10 @@ export default function AddItem({navigation: {navigate}}) {
         value={form.description}
         onChangeText={text => {
           handleTextInput(text, ACTIONS.handleDescription);
+          setDisabled(checkAllInputs());
         }}
         error={error.description}
-        onEndEditing={() => checkAllInputs()}
+        onEndEditing={checkAllInputs}
       />
       <Button
         label="Add"

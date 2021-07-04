@@ -2,7 +2,7 @@ import Carousel from 'react-native-snap-carousel';
 import {styles} from './style';
 import {GlobalState, CarouselProps} from '../../types';
 import React from 'react';
-import {View, Image, TouchableOpacity} from 'react-native';
+import {View, Image, TouchableOpacity, Text} from 'react-native';
 import Price from '../PriceContainer';
 import Name from '../NameContainer';
 import Stock from '../StockContainer';
@@ -28,6 +28,9 @@ export default function CarouselList({navigate}: CarouselProps) {
           <Stock stock={item.totalStock} />
         </View>
       </View>
+      <View style={styles.descriptionContainer}>
+        <Text style={styles.description}>{item.description}</Text>
+      </View>
     </TouchableOpacity>
   );
 
@@ -46,6 +49,7 @@ export default function CarouselList({navigate}: CarouselProps) {
       sliderWidth={styles.carousel.width}
       sliderHeight={styles.carousel.height}
       ListEmptyComponent={emptyComponent}
+      extraData={inventory}
     />
   );
 }

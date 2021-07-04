@@ -16,6 +16,12 @@ const ACTIONS = {
 
 export default function EditItem({navigation: {navigate, pop}, route}) {
   const {setOfNames, inventory} = useSelector((state: GlobalState) => state);
+  const nullError = {
+    name: '',
+    price: '',
+    totalStock: '',
+    description: '',
+  };
   const {itemId} = route.params;
   const dispatch = useDispatch();
   const [form, handleForm] = useState<Item>({
@@ -24,12 +30,7 @@ export default function EditItem({navigation: {navigate, pop}, route}) {
     totalStock: '',
     description: '',
   });
-  const [error, handleError] = useState({
-    name: '',
-    price: '',
-    totalStock: '',
-    description: '',
-  });
+  const [error, handleError] = useState(nullError);
 
   useEffect(() => {
     handleForm(inventory[itemId]);
@@ -46,7 +47,7 @@ export default function EditItem({navigation: {navigate, pop}, route}) {
     }
     inventory[itemId] = {...form};
     dispatch(appActions.addItem({inventory, setOfNames}));
-    navigate(utils.routes.HOME);
+      pop();
   };
 
   const deleteFromInventory = () => {
@@ -68,46 +69,48 @@ export default function EditItem({navigation: {navigate, pop}, route}) {
 
   const checkAllInputs = () => {
     if (form.name.trim().length < 3) {
-      handleError({...error, name: 'Invalid name'});
+      handleError({...nullError, name: 'Invalid name'});
       return true;
     }
-    if (setOfNames?.has(form.name.trim().toLowerCase())) {
-      handleError({...error, name: 'Name already taken'});
+    if (
+      setOfNames?.has(form.name.trim().toLowerCase()) &&
+      form.name.trim().toLowerCase() !==
+        inventory[itemId].name.trim().toLowerCase()
+    ) {
+      handleError({...nullError, name: 'Name already taken'});
       return true;
     }
     if (!form.price.match(/^\d+$/)) {
-      handleError({...error, price: 'invalid price'});
+      handleError({...nullError, price: 'invalid price'});
       return true;
     }
     if (!form.totalStock.match(/^\d+$/)) {
-      handleError({...error, totalStock: 'Invalid stock'});
+      handleError({...nullError, totalStock: 'Invalid stock'});
       return true;
     }
     if (form.description.trim().split(' ').length < 3) {
-      handleError({...error, description: 'Add more description'});
+      handleError({...nullError, description: 'Add more description'});
       return true;
     }
+    handleError({...nullError});
     return false;
   };
 
   const handleTextInput = (text: string, flag: number) => {
+    handleError(nullError);
     switch (flag) {
       case ACTIONS.handleName:
-        handleError({...error, name: ''});
         return handleForm({...form, name: text});
       case ACTIONS.handlePrice:
-        handleError({...error, price: ''});
         return handleForm({...form, price: text});
       case ACTIONS.handleStock:
-        handleError({...error, totalStock: ''});
         return handleForm({...form, totalStock: text});
       case ACTIONS.handleDescription:
-        handleError({...error, description: ''});
         return handleForm({...form, description: text});
     }
   };
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <TextInput
         label="Name"
         placeholder="Tomisin Alu"

@@ -6,7 +6,7 @@ function NameContainer({price, containerStyle}) {
   return (
     <View style={containerStyle}>
       <Image source={bg} style={styles.icon} />
-      <Text style={styles.text}>$ {price}</Text>
+      <Text style={styles.text}>₦ {price}</Text>
     </View>
   );
 }
@@ -16,10 +16,10 @@ export default NameContainer;
 const styles = StyleSheet.create({
   text: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: 12,
     position: 'absolute',
-    top: 13,
-    left: 8,
+    top: 15,
+    left: 4,
     fontWeight: '700',
     textAlign: 'center',
   },
