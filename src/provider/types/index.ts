@@ -3,7 +3,3 @@ export const EDIT_ITEM: string = 'EDIT ITEM';
 export const DELETE_ITEM: string = 'DELETE ITEM';
 export const ADD_NAME: string = 'ADD NAME';
 export const HYDRATE_STATE: string = 'HYDRATE STATE';
-export const HANDLE_NAME: string = 'HANDLE NAME';
-export const HANDLE_PRICE: string = 'HANDLE PRICE';
-export const HANDLE_STOCK: string = 'HANDLE STOCK';
-export const HANDLE_DESCRIPTION: string = 'HANDLE DESCRIPTION';
