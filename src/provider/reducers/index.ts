@@ -7,7 +7,7 @@ import {
   HYDRATE_STATE,
 } from '../types';
 
-const INITIAL_STATE = {
+const INITIAL_STATE: GlobalState = {
   inventory: [],
   setOfNames: new Set<string>(),
 };

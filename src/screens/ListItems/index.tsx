@@ -8,7 +8,7 @@ import {NavigationProp} from '@react-navigation/native';
 export default function Inventory({navigation: {navigate}}: NavigationProp) {
   return (
     <View style={styles.container}>
-      <InventoryList />
+      <InventoryList navigate={navigate} />
       <FloatingButton
         onPress={() => {
           navigate(utils.routes.ADD);

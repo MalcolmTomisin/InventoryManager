@@ -11,3 +11,11 @@ export default function FAB({onPress}: FABProps) {
     </TouchableOpacity>
   );
 }
+
+export function TrashButton({onPress}: FABProps) {
+  return (
+    <TouchableOpacity onPress={onPress} style={styles.fab}>
+      <Icon name="trash" size={24} color="#fff" />
+    </TouchableOpacity>
+  );
+}

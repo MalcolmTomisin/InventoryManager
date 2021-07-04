@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
-import {ScrollView} from 'react-native';
-import {TextInput, Button} from '../../components';
+import React, {useState, useEffect} from 'react';
+import {ScrollView, Alert} from 'react-native';
+import {TextInput, Button, TrashButton} from '../../components';
 import styles from './style';
-import {GlobalState} from '../../types';
+import {GlobalState, Item} from '../../types';
 import {useSelector, useDispatch} from 'react-redux';
 import appActions from '../../provider/actions';
 import utils from '../../utils';
@@ -14,10 +14,11 @@ const ACTIONS = {
   handleDescription: 4,
 };
 
-export default function AddItem({navigation: {navigate}}) {
+export default function EditItem({navigation: {navigate, pop}, route}) {
   const {setOfNames, inventory} = useSelector((state: GlobalState) => state);
+  const {itemId} = route.params;
   const dispatch = useDispatch();
-  const [form, handleForm] = useState({
+  const [form, handleForm] = useState<Item>({
     name: '',
     price: '',
     totalStock: '',
@@ -29,35 +30,64 @@ export default function AddItem({navigation: {navigate}}) {
     totalStock: '',
     description: '',
   });
+
+  useEffect(() => {
+    handleForm(inventory[itemId]);
+  }, []);
   const [disabled, setDisabled] = useState<boolean>(true);
+
   const addItemToInventory = () => {
-    setOfNames?.add(form.name.trim().toLowerCase());
-    inventory.unshift({
-      ...form,
-      price: parseInt(form.price),
-      totalStock: parseInt(form.totalStock),
-    });
+    if (
+      form.name.trim().toLowerCase() !==
+      inventory[itemId].name.trim().toLowerCase()
+    ) {
+      setOfNames?.delete(inventory[itemId].name.trim().toLowerCase());
+      setOfNames?.add(form.name.trim().toLowerCase());
+    }
+    inventory[itemId] = {...form};
     dispatch(appActions.addItem({inventory, setOfNames}));
     navigate(utils.routes.HOME);
   };
 
+  const deleteFromInventory = () => {
+    Alert.alert('Delete', 'Proceed?', [
+      {
+        text: 'OK',
+        onPress: () => {
+          inventory.splice(itemId, 1);
+          pop();
+          dispatch(appActions.addItem({inventory}));
+        },
+      },
+      {
+        text: 'Cancel',
+        onPress: () => {},
+      },
+    ]);
+  };
+
   const checkAllInputs = () => {
     if (form.name.trim().length < 3) {
-      return handleError({...error, name: 'Invalid name'});
+      handleError({...error, name: 'Invalid name'});
+      return true;
     }
     if (setOfNames?.has(form.name.trim().toLowerCase())) {
-      return handleError({...error, name: 'Name already taken'});
+      handleError({...error, name: 'Name already taken'});
+      return true;
     }
     if (!form.price.match(/^\d+$/)) {
-      return handleError({...error, price: 'invalid price'});
+      handleError({...error, price: 'invalid price'});
+      return true;
     }
     if (!form.totalStock.match(/^\d+$/)) {
-      return handleError({...error, totalStock: 'Invalid stock'});
+      handleError({...error, totalStock: 'Invalid stock'});
+      return true;
     }
     if (form.description.trim().split(' ').length < 3) {
-      return handleError({...error, description: 'Add more description'});
+      handleError({...error, description: 'Add more description'});
+      return true;
     }
-    return setDisabled(false);
+    return false;
   };
 
   const handleTextInput = (text: string, flag: number) => {
@@ -85,6 +115,7 @@ export default function AddItem({navigation: {navigate}}) {
         value={form.name}
         onChangeText={text => {
           handleTextInput(text, ACTIONS.handleName);
+          setDisabled(checkAllInputs());
         }}
         error={error.name}
         onEndEditing={() => checkAllInputs()}
@@ -97,6 +128,7 @@ export default function AddItem({navigation: {navigate}}) {
         value={form.price}
         onChangeText={text => {
           handleTextInput(text, ACTIONS.handlePrice);
+          setDisabled(checkAllInputs());
         }}
         error={error.price}
         onEndEditing={() => checkAllInputs()}
@@ -109,6 +141,7 @@ export default function AddItem({navigation: {navigate}}) {
         value={form.totalStock}
         onChangeText={text => {
           handleTextInput(text, ACTIONS.handleStock);
+          setDisabled(checkAllInputs());
         }}
         error={error.totalStock}
         onEndEditing={() => checkAllInputs()}
@@ -121,16 +154,18 @@ export default function AddItem({navigation: {navigate}}) {
         value={form.description}
         onChangeText={text => {
           handleTextInput(text, ACTIONS.handleDescription);
+          setDisabled(checkAllInputs());
         }}
         error={error.description}
         onEndEditing={() => checkAllInputs()}
       />
       <Button
-        label="Add"
+        label="Update"
         disabled={disabled}
         containerStyle={styles.input}
         onPress={addItemToInventory}
       />
+      <TrashButton onPress={deleteFromInventory} />
     </ScrollView>
   );
 }

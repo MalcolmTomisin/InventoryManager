@@ -15,6 +15,7 @@ export default {
   routes: {
     HOME: 'Inventory Screen',
     ADD: 'Add Item',
+    EDIT: 'Edit Item',
   },
   fonts: {
     GOTHAM: 'GothamMedium',

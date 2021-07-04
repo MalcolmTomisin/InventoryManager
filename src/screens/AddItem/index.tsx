@@ -34,8 +34,8 @@ export default function AddItem({navigation: {navigate}}) {
     setOfNames?.add(form.name.trim().toLowerCase());
     inventory.unshift({
       ...form,
-      price: parseInt(form.price),
-      totalStock: parseInt(form.totalStock),
+      price: form.price,
+      totalStock: form.totalStock,
     });
     dispatch(appActions.addItem({inventory, setOfNames}));
     navigate(utils.routes.HOME);

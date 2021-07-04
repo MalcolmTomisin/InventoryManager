@@ -1,8 +1,8 @@
 import Carousel from 'react-native-snap-carousel';
 import {styles} from './style';
-import {GlobalState} from '../../types';
+import {GlobalState, CarouselProps} from '../../types';
 import React from 'react';
-import {View, Image, TouchableOpacity, Touchable} from 'react-native';
+import {View, Image, TouchableOpacity} from 'react-native';
 import Price from '../PriceContainer';
 import Name from '../NameContainer';
 import Stock from '../StockContainer';
@@ -10,10 +10,12 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import utils from '../../utils';
 import {useSelector} from 'react-redux';
 
-export default function CarouselList() {
+export default function CarouselList({navigate}: CarouselProps) {
   const {inventory} = useSelector((state: GlobalState) => state);
   const _renderItem = ({item, index}) => (
-    <TouchableOpacity key={index}>
+    <TouchableOpacity
+      key={index}
+      onPress={() => navigate(utils.routes.EDIT, {itemId: index})}>
       <View style={styles.items}>
         <View style={styles.imageContainer}>
           <Image

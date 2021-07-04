@@ -1,8 +1,8 @@
 import {TextInputProps} from 'react-native';
 export interface Item {
   name: string;
-  price: number | null;
-  totalStock: number | null;
+  price: string;
+  totalStock: string;
   description: string;
 }
 
@@ -31,4 +31,8 @@ export interface GlobalState {
 export interface Action {
   type: string;
   payload: object;
+}
+
+export interface CarouselProps {
+  navigate: (arg: string, obj: object) => void;
 }
