@@ -38,6 +38,7 @@ export const styles = StyleSheet.create({
     borderBottomStartRadius: 5,
     borderBottomEndRadius: 5,
     paddingStart: 10,
+    marginTop: -20,
   },
   description: {
     fontFamily: utils.fonts.AILERON,
