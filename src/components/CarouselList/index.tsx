@@ -14,6 +14,7 @@ export default function CarouselList({navigate}: CarouselProps) {
   const {inventory} = useSelector((state: GlobalState) => state);
   const _renderItem = ({item, index}) => (
     <TouchableOpacity
+      testID={utils.testID.nav}
       key={index}
       onPress={() => navigate(utils.routes.EDIT, {itemId: index})}>
       <View style={styles.items}>

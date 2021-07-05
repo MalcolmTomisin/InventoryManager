@@ -24,15 +24,15 @@ export default function EditItem({navigation: {navigate, pop}, route}) {
   };
   const {itemId} = route.params;
   const dispatch = useDispatch();
-  const [form, handleForm] = useState<Item>({
+  const [form, handleForm] = React.useState<Item>({
     name: '',
     price: '',
     totalStock: '',
     description: '',
   });
-  const [error, handleError] = useState(nullError);
+  const [error, handleError] = React.useState(nullError);
 
-  useEffect(() => {
+  React.useEffect(() => {
     handleForm(inventory[itemId]);
   }, []);
   const [disabled, setDisabled] = useState<boolean>(true);

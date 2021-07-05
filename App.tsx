@@ -19,10 +19,10 @@ import utils from './src/utils';
 import appActions from './src/provider/actions';
 
 const App = () => {
-  const appState = useRef(AppState.currentState);
-  const [appStateVisible, setAppStateVisible] = useState(appState.current);
+  const appState = React.useRef(AppState.currentState);
+  const [appStateVisible, setAppStateVisible] = React.useState(appState.current);
 
-  useEffect(() => {
+  React.useEffect(() => {
     AppState.addEventListener('change', _handleAppStateChange);
 
     AsyncStorage.getItem(utils.storage_key).then(val => {

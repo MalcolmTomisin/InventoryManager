@@ -35,4 +35,8 @@ export default {
     }
     return false;
   },
+  testID: {
+    nav: 'gotoEdit',
+    delete: 'delete',
+  }
 };

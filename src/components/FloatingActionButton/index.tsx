@@ -15,6 +15,7 @@ export default function FAB({onPress}: FABProps) {
 export function TrashButton({onPress}: FABProps) {
   return (
     <TouchableOpacity
+      testID="delete"
       onPress={onPress}
       style={[styles.fab, {backgroundColor: '#F74300'}]}>
       <Icon name="trash" size={24} color="#fff" />
