@@ -1,0 +1,307 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<RCTScrollView
+  contentContainerStyle={
+    Object {
+      "flex": 1,
+      "height": 1334,
+      "paddingStart": 15,
+    }
+  }
+>
+  <View>
+    <View
+      style={
+        Array [
+          Object {
+            "paddingVertical": 5,
+            "width": 637.5,
+          },
+          Object {
+            "marginVertical": 10,
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#000000",
+            "fontFamily": "Aileron-Bold",
+            "fontSize": 16,
+          }
+        }
+      >
+        Name
+      </Text>
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#9393AA",
+            },
+            Object {
+              "borderBottomWidth": 1,
+              "justifyContent": "center",
+            },
+          ]
+        }
+      >
+        <TextInput
+          allowFontScaling={true}
+          onChangeText={[Function]}
+          onEndEditing={[Function]}
+          onFocus={[Function]}
+          placeholder="Tomisin Alu"
+          placeholderTextColor="#9393AA"
+          rejectResponderTermination={true}
+          style={
+            Array [
+              Object {
+                "borderWidth": 0,
+                "color": "#272755",
+                "fontFamily": "Aileron-Regular",
+                "fontSize": 14,
+              },
+              Object {
+                "height": 48,
+              },
+            ]
+          }
+          underlineColorAndroid="transparent"
+          value=""
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "paddingVertical": 5,
+            "width": 637.5,
+          },
+          Object {
+            "marginVertical": 10,
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#000000",
+            "fontFamily": "Aileron-Bold",
+            "fontSize": 16,
+          }
+        }
+      >
+        Price
+      </Text>
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#9393AA",
+            },
+            Object {
+              "borderBottomWidth": 1,
+              "justifyContent": "center",
+            },
+          ]
+        }
+      >
+        <TextInput
+          allowFontScaling={true}
+          keyboardType="numeric"
+          onChangeText={[Function]}
+          onEndEditing={[Function]}
+          onFocus={[Function]}
+          placeholder="₦ 500"
+          placeholderTextColor="#9393AA"
+          rejectResponderTermination={true}
+          style={
+            Array [
+              Object {
+                "borderWidth": 0,
+                "color": "#272755",
+                "fontFamily": "Aileron-Regular",
+                "fontSize": 14,
+              },
+              Object {
+                "height": 48,
+              },
+            ]
+          }
+          underlineColorAndroid="transparent"
+          value=""
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "paddingVertical": 5,
+            "width": 637.5,
+          },
+          Object {
+            "marginVertical": 10,
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#000000",
+            "fontFamily": "Aileron-Bold",
+            "fontSize": 16,
+          }
+        }
+      >
+        Total stock (Qty)
+      </Text>
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#9393AA",
+            },
+            Object {
+              "borderBottomWidth": 1,
+              "justifyContent": "center",
+            },
+          ]
+        }
+      >
+        <TextInput
+          allowFontScaling={true}
+          keyboardType="numeric"
+          onChangeText={[Function]}
+          onEndEditing={[Function]}
+          onFocus={[Function]}
+          placeholder="65"
+          placeholderTextColor="#9393AA"
+          rejectResponderTermination={true}
+          style={
+            Array [
+              Object {
+                "borderWidth": 0,
+                "color": "#272755",
+                "fontFamily": "Aileron-Regular",
+                "fontSize": 14,
+              },
+              Object {
+                "height": 48,
+              },
+            ]
+          }
+          underlineColorAndroid="transparent"
+          value=""
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "paddingVertical": 5,
+            "width": 637.5,
+          },
+          Object {
+            "marginVertical": 10,
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#000000",
+            "fontFamily": "Aileron-Bold",
+            "fontSize": 16,
+          }
+        }
+      >
+        Description
+      </Text>
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#9393AA",
+            },
+            Object {
+              "borderBottomWidth": 1,
+              "justifyContent": "center",
+            },
+          ]
+        }
+      >
+        <TextInput
+          allowFontScaling={true}
+          multiline={true}
+          onChangeText={[Function]}
+          onEndEditing={[Function]}
+          onFocus={[Function]}
+          placeholder="..."
+          placeholderTextColor="#9393AA"
+          rejectResponderTermination={true}
+          style={
+            Array [
+              Object {
+                "borderWidth": 0,
+                "color": "#272755",
+                "fontFamily": "Aileron-Regular",
+                "fontSize": 14,
+              },
+              Object {
+                "height": 80,
+              },
+            ]
+          }
+          underlineColorAndroid="transparent"
+          value=""
+        />
+      </View>
+    </View>
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#9393AA",
+          "borderRadius": 5,
+          "height": 48,
+          "justifyContent": "center",
+          "marginVertical": 10,
+          "opacity": 1,
+          "padding": 10,
+          "width": 300,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#FFFFFF",
+            "fontFamily": "GothamMedium",
+            "fontSize": 12,
+          }
+        }
+      >
+        Add
+      </Text>
+    </View>
+  </View>
+</RCTScrollView>
+`;
