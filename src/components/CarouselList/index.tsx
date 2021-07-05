@@ -15,6 +15,9 @@ export default function CarouselList({navigate}: CarouselProps) {
   const _renderItem = ({item, index}) => (
     <TouchableOpacity
       testID={utils.testID.nav}
+      accessibilityLabel="Edit item"
+      accessibilityHint="navigate to edit screen and edit selected item"
+      accessibilityRole="imagebutton"
       key={index}
       onPress={() => navigate(utils.routes.EDIT, {itemId: index})}>
       <View style={styles.items}>
@@ -36,7 +39,9 @@ export default function CarouselList({navigate}: CarouselProps) {
   );
 
   const emptyComponent = () => (
-    <View style={styles.emptyContainer}>
+    <View
+      accessibilityHint="Inventory list empty"
+      style={styles.emptyContainer}>
       <Icon name="hourglass-empty" size={60} color={utils.colors.PRIMARY} />
     </View>
   );

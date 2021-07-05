@@ -46,5 +46,6 @@ jest.mock('react-redux', () => {
 let props = createTestProps({});
 
 it('renders correctly', () => {
-  renderer.create(<Edit {...props} />);
+  const tree = renderer.create(<Edit {...props} />).toJSON();
+  expect(tree).toMatchSnapshot();
 });

@@ -14,11 +14,17 @@ export default function Input({
   keyboardType,
   error,
   onEndEditing,
+  accessibilityLabel,
+  accessibilityHint,
 }: InputProps) {
   const [focused, setFocused] = useState<boolean>(false);
 
   return (
-    <View style={[styles.container, containerStyle]}>
+    <View
+      accessible={true}
+      accessibilityLabel={accessibilityLabel}
+      accessibilityHint={accessibilityHint}
+      style={[styles.container, containerStyle]}>
       <Text style={styles.label}>{label}</Text>
       <View
         style={[

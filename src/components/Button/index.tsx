@@ -9,9 +9,13 @@ export default function Button({
   containerStyle,
   disabled,
   onPress,
+  accessibilityLabel,
+  accessibilityHint,
 }: ButtonProps) {
   return (
     <TouchableOpacity
+      accessibilityLabel={accessibilityLabel}
+      accessibilityHint={accessibilityHint}
       onPress={onPress}
       disabled={disabled}
       style={[

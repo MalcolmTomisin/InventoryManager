@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {ScrollView, Alert} from 'react-native';
 import {TextInput, Button, TrashButton} from '../../components';
 import styles from './style';
@@ -14,7 +14,7 @@ const ACTIONS = {
   handleDescription: 4,
 };
 
-export default function EditItem({navigation: {navigate, pop}, route}) {
+export default function EditItem({navigation: {pop}, route}) {
   const {setOfNames, inventory} = useSelector((state: GlobalState) => state);
   const nullError = {
     name: '',
@@ -47,7 +47,7 @@ export default function EditItem({navigation: {navigate, pop}, route}) {
     }
     inventory[itemId] = {...form};
     dispatch(appActions.addItem({inventory, setOfNames}));
-      pop();
+    pop();
   };
 
   const deleteFromInventory = () => {
@@ -122,6 +122,8 @@ export default function EditItem({navigation: {navigate, pop}, route}) {
         }}
         error={error.name}
         onEndEditing={() => checkAllInputs()}
+        accessibilityHint="update name"
+        accessibilityLabel="Name text input"
       />
       <TextInput
         label="Price"
@@ -135,6 +137,8 @@ export default function EditItem({navigation: {navigate, pop}, route}) {
         }}
         error={error.price}
         onEndEditing={() => checkAllInputs()}
+        accessibilityHint="Update price"
+        accessibilityLabel="Price text input"
       />
       <TextInput
         label="Total stock (Qty)"
@@ -148,6 +152,8 @@ export default function EditItem({navigation: {navigate, pop}, route}) {
         }}
         error={error.totalStock}
         onEndEditing={() => checkAllInputs()}
+        accessibilityHint="Update total stock"
+        accessibilityLabel="Stock text input"
       />
       <TextInput
         label="Description"
@@ -161,14 +167,23 @@ export default function EditItem({navigation: {navigate, pop}, route}) {
         }}
         error={error.description}
         onEndEditing={() => checkAllInputs()}
+        accessibilityHint="update description"
+        accessibilityLabel="Description text input"
       />
       <Button
         label="Update"
         disabled={disabled}
         containerStyle={styles.input}
         onPress={addItemToInventory}
+        accessibilityLabel="Update inventory"
+        accessibilityHint="tap to update inventory"
       />
-      <TrashButton onPress={deleteFromInventory} />
+      <TrashButton
+        accessibilityLabel="Delete"
+        accessibilityHint="Tap to delete item from inventory"
+        onPress={deleteFromInventory}
+        accessibilityLiveRegion="asertive"
+      />
     </ScrollView>
   );
 }

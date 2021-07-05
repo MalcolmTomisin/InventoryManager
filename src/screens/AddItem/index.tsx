@@ -93,6 +93,8 @@ export default function AddItem({navigation: {navigate}}) {
         }}
         error={error.name}
         onEndEditing={checkAllInputs}
+        accessibilityHint="Put in name"
+        accessibilityLabel="Name text input"
       />
       <TextInput
         label="Price"
@@ -106,6 +108,8 @@ export default function AddItem({navigation: {navigate}}) {
         }}
         error={error.price}
         onEndEditing={checkAllInputs}
+        accessibilityHint="Put in price"
+        accessibilityLabel="Price text input"
       />
       <TextInput
         label="Total stock (Qty)"
@@ -119,6 +123,8 @@ export default function AddItem({navigation: {navigate}}) {
         }}
         error={error.totalStock}
         onEndEditing={checkAllInputs}
+        accessibilityHint="Put in total stock"
+        accessibilityLabel="Stock text input"
       />
       <TextInput
         label="Description"
@@ -132,12 +138,16 @@ export default function AddItem({navigation: {navigate}}) {
         }}
         error={error.description}
         onEndEditing={checkAllInputs}
+        accessibilityHint="Put in description"
+        accessibilityLabel="Description text input"
       />
       <Button
         label="Add"
         disabled={disabled}
         containerStyle={styles.input}
         onPress={addItemToInventory}
+        accessibilityLabel="Add to inventory"
+        accessibilityHint="tap to add to inventory"
       />
     </ScrollView>
   );

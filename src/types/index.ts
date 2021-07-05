@@ -8,6 +8,9 @@ export interface Item {
 
 export interface FABProps {
   onPress: () => void;
+  accessibilityLabel: string;
+  accessibilityHint: string;
+  accessibilityLiveRegion?: string;
 }
 
 export interface InputProps extends TextInputProps {
@@ -21,6 +24,8 @@ export interface TouchableProps {
   containerStyle?: object;
   disabled?: boolean;
   onPress?: () => void;
+  accessibilityLabel: string;
+  accessibilityHint: string;
 }
 
 export interface GlobalState {
